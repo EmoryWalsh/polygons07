@@ -32,8 +32,6 @@ def draw_polygons( polygons, screen, color ):
                    screen, color)
         point+= 3
 
-    print_matrix(polygons)
-
 def add_box( polygons, x, y, z, width, height, depth ):
     x1 = x + width
     y1 = y - height
