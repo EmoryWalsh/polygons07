@@ -3,11 +3,33 @@ from matrix import *
 from gmath import *
 
 def add_polygon( polygons, x0, y0, z0, x1, y1, z1, x2, y2, z2 ):
-    pass
+    add_point(polygons, x0, y0, z0)
+    add_point(polygons, x1, y1, z1)
+    add_point(polygons, x2, y2, z2)
 
 def draw_polygons( polygons, screen, color ):
-    pass
+    if len(matrix) < 3:
+        print('Need at least 3 points to draw')
+        return
 
+    point = 0
+    while point < len(matrix) - 2:
+        draw_line( int(matrix[point][0]),
+                   int(matrix[point][1]),
+                   int(matrix[point+1][0]),
+                   int(matrix[point+1][1]),
+                   screen, color)
+        draw_line( int(matrix[point+1][0]),
+                   int(matrix[point+1][1]),
+                   int(matrix[point+2][0]),
+                   int(matrix[point+2][1]),
+                   screen, color)
+        draw_line( int(matrix[point+2][0]),
+                   int(matrix[point+2][1]),
+                   int(matrix[point][0]),
+                   int(matrix[point][1]),
+                   screen, color)
+        point+= 3
 
 def add_box( polygons, x, y, z, width, height, depth ):
     x1 = x + width
