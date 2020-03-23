@@ -8,28 +8,31 @@ def add_polygon( polygons, x0, y0, z0, x1, y1, z1, x2, y2, z2 ):
     add_point(polygons, x2, y2, z2)
 
 def draw_polygons( polygons, screen, color ):
-    if len(matrix) < 3:
+    if len(polygons) < 3:
         print('Need at least 3 points to draw')
+
         return
 
     point = 0
-    while point < len(matrix) - 2:
-        draw_line( int(matrix[point][0]),
-                   int(matrix[point][1]),
-                   int(matrix[point+1][0]),
-                   int(matrix[point+1][1]),
+    while point < len(polygons) - 2:
+        draw_line( int(polygons[point][0]),
+                   int(polygons[point][1]),
+                   int(polygons[point+1][0]),
+                   int(polygons[point+1][1]),
                    screen, color)
-        draw_line( int(matrix[point+1][0]),
-                   int(matrix[point+1][1]),
-                   int(matrix[point+2][0]),
-                   int(matrix[point+2][1]),
+        draw_line( int(polygons[point+1][0]),
+                   int(polygons[point+1][1]),
+                   int(polygons[point+2][0]),
+                   int(polygons[point+2][1]),
                    screen, color)
-        draw_line( int(matrix[point+2][0]),
-                   int(matrix[point+2][1]),
-                   int(matrix[point][0]),
-                   int(matrix[point][1]),
+        draw_line( int(polygons[point+2][0]),
+                   int(polygons[point+2][1]),
+                   int(polygons[point][0]),
+                   int(polygons[point][1]),
                    screen, color)
         point+= 3
+
+    print_matrix(polygons)
 
 def add_box( polygons, x, y, z, width, height, depth ):
     x1 = x + width
@@ -37,22 +40,38 @@ def add_box( polygons, x, y, z, width, height, depth ):
     z1 = z - depth
 
     #front
-    add_edge(polygons, x, y, z, x1, y, z)
-    add_edge(polygons, x, y1, z, x1, y1, z)
-    add_edge(polygons, x1, y, z, x1, y1, z)
-    add_edge(polygons, x, y, z, x, y1, z)
+    add_polygon(polygons, x, y, z, x, y1, z, x1, y, z)
+    add_polygon(polygons, x, y1, z, x1, y1, z, x1, y, z)
+    #add_edge(polygons, x, y, z, x1, y, z)
+    #add_edge(polygons, x, y1, z, x1, y1, z)
+    #add_edge(polygons, x1, y, z, x1, y1, z)
+    #add_edge(polygons, x, y, z, x, y1, z)
 
     #back
-    add_edge(polygons, x, y, z1, x1, y, z1)
-    add_edge(polygons, x, y1, z1, x1, y1, z1)
-    add_edge(polygons, x1, y, z1, x1, y1, z1)
-    add_edge(polygons, x, y, z1, x, y1, z1)
+    add_polygon(polygons, x1, y, z1, x1, y1, z1, x, y, z1)
+    add_polygon(polygons, x1, y1, z1, x, y1, z1, x, y, z1)
+    #add_edge(polygons, x, y, z1, x1, y, z1)
+    #add_edge(polygons, x, y1, z1, x1, y1, z1)
+    #add_edge(polygons, x1, y, z1, x1, y1, z1)
+    #add_edge(polygons, x, y, z1, x, y1, z1)
 
     #sides
-    add_edge(polygons, x, y, z, x, y, z1)
-    add_edge(polygons, x1, y, z, x1, y, z1)
-    add_edge(polygons, x, y1, z, x, y1, z1)
-    add_edge(polygons, x1, y1, z, x1, y1, z1)
+    add_polygon(polygons, x1, y, z, x1, y1, z, x1, y, z1)
+    add_polygon(polygons, x1, y1, z, x1, y1, z1, x1, y, z1)
+    add_polygon(polygons, x, y1, z1, x, y, z, x, y, z1)
+    add_polygon(polygons, x, y1, z1, x, y1, z, x, y, z)
+    #add_edge(polygons, x, y, z, x, y, z1)
+    #add_edge(polygons, x1, y, z, x1, y, z1)
+    #add_edge(polygons, x, y1, z, x, y1, z1)
+    #add_edge(polygons, x1, y1, z, x1, y1, z1)
+
+    #top
+    add_polygon(polygons, x, y, z1, x, y, z, x1, y, z1)
+    add_polygon(polygons, x, y, z, x1, y, z, x1, y, z1)
+
+    #bottom
+    add_polygon(polygons, x, y1, z, x, y1, z1, x1, y1, z)
+    add_polygon(polygons, x, y1, z1, x1, y1, z1, x1, y1, z)
 
 def add_sphere(polygons, cx, cy, cz, r, steps ):
     points = generate_sphere(cx, cy, cz, r, steps)
