@@ -10,4 +10,4 @@ edges = []
 polygons = []
 transform = new_matrix()
 
-parse_file( 'box', edges, polygons, transform, screen, color )
+parse_file( 'sphere', edges, polygons, transform, screen, color )
