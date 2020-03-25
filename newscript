@@ -1,0 +1,96 @@
+torus
+0 0 0 5 10
+torus
+0 10 0 5 5
+torus
+0 20 0 5 3
+torus
+0 30 0 5 3
+torus
+0 40 0 5 3
+torus
+0 50 0 5 3
+torus
+0 60 0 5 3
+torus
+0 70 0 5 3
+torus
+0 80 0 5 3
+torus
+0 90 0 5 3
+torus
+0 100 0 5 3
+torus
+0 110 0 5 3
+torus
+0 120 0 5 3
+torus
+0 130 0 5 3
+torus
+0 140 0 5 3
+torus
+0 150 0 5 3
+torus
+0 160 0 5 3
+torus
+0 170 0 5 3
+torus
+0 180 0 5 3
+torus
+0 190 0 5 3
+torus
+0 200 0 5 3
+torus
+0 210 0 5 3
+torus
+0 220 0 5 3
+torus
+0 230 0 5 3
+torus
+0 240 0 5 3
+torus
+0 250 0 5 3
+torus
+0 260 0 5 3
+torus
+0 270 0 5 3
+torus
+0 280 0 5 3
+torus
+0 290 0 5 3
+torus
+0 300 0 5 3
+box
+-20 380 0 10 50 10
+box
+-10 380 0 10 50 10
+box
+0 380 0 10 50 10
+box
+10 380 0 10 50 10
+box
+-30 365 0 60 10 10
+box
+-26 360 0 52 10 10
+box
+-22 355 0 44 10 10
+box
+-18 350 0 36 10 10
+box
+-14 345 0 28 10 10
+sphere
+0 320 0 20
+sphere
+-20 380 0 20
+sphere
+20 380 0 20
+torus
+0 385 0 20 10
+ident
+rotate
+z -30
+move
+120 50 0
+apply
+save
+pic.png
