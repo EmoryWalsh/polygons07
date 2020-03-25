@@ -14,22 +14,29 @@ def draw_polygons( polygons, screen, color ):
         return
 
     point = 0
+
     while point < len(polygons) - 2:
-        draw_line( int(polygons[point][0]),
-                   int(polygons[point][1]),
-                   int(polygons[point+1][0]),
-                   int(polygons[point+1][1]),
-                   screen, color)
-        draw_line( int(polygons[point+1][0]),
-                   int(polygons[point+1][1]),
-                   int(polygons[point+2][0]),
-                   int(polygons[point+2][1]),
-                   screen, color)
-        draw_line( int(polygons[point+2][0]),
-                   int(polygons[point+2][1]),
-                   int(polygons[point][0]),
-                   int(polygons[point][1]),
-                   screen, color)
+        normal = calculate_normal(polygons, point)
+        view = [0, 0, 1]
+        dp = dot_product(normal, view)
+        
+        if(dp > 0):
+            print("draw")
+            draw_line( int(polygons[point][0]),
+                       int(polygons[point][1]),
+                       int(polygons[point+1][0]),
+                       int(polygons[point+1][1]),
+                       screen, color)
+            draw_line( int(polygons[point+1][0]),
+                       int(polygons[point+1][1]),
+                       int(polygons[point+2][0]),
+                       int(polygons[point+2][1]),
+                       screen, color)
+            draw_line( int(polygons[point+2][0]),
+                       int(polygons[point+2][1]),
+                       int(polygons[point][0]),
+                       int(polygons[point][1]),
+                       screen, color)
         point+= 3
 
 
